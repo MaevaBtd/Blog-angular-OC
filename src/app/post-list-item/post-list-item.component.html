@@ -1,0 +1,9 @@
+<div [ngClass]="getClass()">
+    <h3>
+    {{postTitle}}
+    </h3>
+    <p>{{postDate | date: 'short'}}</p>
+    <p>{{postContent }}</p>
+    <button class="btn btn-success" (click)="onLoveIt()">Love It!</button>
+    <button class="btn btn-danger" (click)="onDontLoveIt()">Don't Love It!</button>
+    </div>
