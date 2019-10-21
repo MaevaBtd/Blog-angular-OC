@@ -1,3 +1,7 @@
+import { Router } from '@angular/router';
+import { PostsService } from './../services/posts.service';
+import { Subscription } from 'rxjs/';
+import { Post } from './../models/Post.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -11,27 +15,35 @@ export class PostListItemComponent implements OnInit {
   @Input() postLikes: number;
   @Input() postDate: Date;
 
-  constructor() { }
+  postsSubscription: Subscription;
+
+
+  constructor(private postsService: PostsService, private router: Router) { }
 
   ngOnInit() {
   }
 
   getClass() {
-    if(this.postLikes > 0) {
+    if (this.postLikes > 0) {
       return 'list-group-item-success';
-    } else if(this.postLikes < 0) {
+    } else if (this.postLikes < 0) {
       return 'list-group-item-danger';
     }
   }
 
   onLoveIt() {
-    this.postLikes ++
+    this.postLikes ++;
     console.log("love it")
   }
 
    onDontLoveIt() {
-    this.postLikes --
+    this.postLikes --;
     console.log("don't love it")
+  }
+
+  onRemovePost() {
+    this.postsService.removePost();
+    console.log("remove post");
   }
 
 }
