@@ -10,13 +10,9 @@ export class PostsService {
   posts: Post[] = [];
   postsSubject = new Subject<Post[]>();
 
-  constructor() { }
-
-  createNewPost(newPost: Post) {
-    this.posts.push(newPost);
-    this.savePosts();
-    this.emitPosts();
-  }
+  constructor() {
+    this.getPosts();
+   }
 
   emitPosts() {
     this.postsSubject.next(this.posts);
@@ -33,6 +29,12 @@ export class PostsService {
           this.emitPosts();
         }
       );
+  }
+
+  createNewPost(newPost: Post) {
+    this.posts.push(newPost);
+    this.savePosts();
+    this.emitPosts();
   }
 
   removePost(post: Post) {
