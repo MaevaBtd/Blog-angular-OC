@@ -37,15 +37,9 @@ export class PostsService {
     this.emitPosts();
   }
 
-  removePost(post: Post) {
-    const postIndexToRemove = this.posts.findIndex(
-      (postEl) => {
-        if (postEl === post) {
-          return true;
-        }
-      }
-    );
-    this.posts.splice(postIndexToRemove, 1);
+  removePost(index) {
+    this.posts.splice(index, 1);
+    console.log(index);
     this.savePosts();
     this.emitPosts();
   }

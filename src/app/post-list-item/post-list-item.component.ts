@@ -14,6 +14,7 @@ export class PostListItemComponent implements OnInit {
   @Input() postContent: string;
   @Input() postLikes: number;
   @Input() postDate: Date;
+  @Input() postIndex: number;
 
   postsSubscription: Subscription;
 
@@ -41,9 +42,9 @@ export class PostListItemComponent implements OnInit {
     console.log("don't love it")
   }
 
-  onRemovePost() {
-    this.postsService.removePost();
-    console.log("remove post");
+  onRemovePost(index) {
+    console.log("remove post", index);
+    this.postsService.removePost(index);
   }
 
 }
