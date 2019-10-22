@@ -1,7 +1,6 @@
 import { Router } from '@angular/router';
 import { PostsService } from './../services/posts.service';
 import { Subscription } from 'rxjs/';
-import { Post } from './../models/Post.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -13,7 +12,7 @@ export class PostListItemComponent implements OnInit {
   @Input() postTitle: string;
   @Input() postContent: string;
   @Input() postLikes: number;
-  @Input() postDate: Date;
+  @Input() postDate: string;
   @Input() postIndex: number;
 
   postsSubscription: Subscription;
@@ -32,18 +31,15 @@ export class PostListItemComponent implements OnInit {
     }
   }
 
-  onLoveIt() {
-    this.postLikes ++;
-    console.log("love it")
+  onLoveIt(index) {
+    this.postsService.loveIt(index);
   }
 
-   onDontLoveIt() {
-    this.postLikes --;
-    console.log("don't love it")
+   onDontLoveIt(index) {
+    this.postsService.dontloveIt(index);
   }
 
   onRemovePost(index) {
-    console.log("remove post", index);
     this.postsService.removePost(index);
   }
 

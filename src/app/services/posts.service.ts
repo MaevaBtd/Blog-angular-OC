@@ -39,10 +39,19 @@ export class PostsService {
 
   removePost(index) {
     this.posts.splice(index, 1);
-    console.log(index);
     this.savePosts();
     this.emitPosts();
   }
 
+  loveIt(index) {
+    this.posts[index].loveIts ++;
+    this.savePosts();
+    this.emitPosts();
+  }
 
+  dontloveIt(index) {
+    this.posts[index].loveIts --;
+    this.savePosts();
+    this.emitPosts();
+  }
 }
